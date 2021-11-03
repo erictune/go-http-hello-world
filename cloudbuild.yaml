@@ -1,5 +1,14 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/gohello:v1', '.' ]
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'us-central1-docker.pkg.dev/eric-tune-7/quickstart-docker-repo/gohello:v1', '.']
+  
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/eric-tune-7/quickstart-docker-repo/myimage:v1']
+  
+# Store images in Google Artifact Registry
 images:
-- 'us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/gohello:v1'
+  - us-central1-docker.pkg.dev/eric-tune-7/quickstart-docker-repo/myimage:v1
+
